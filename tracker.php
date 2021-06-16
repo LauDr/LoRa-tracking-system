@@ -24,8 +24,8 @@
 			var map = new mapboxgl.Map({
 			container: 'map',
 			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [4.279637, 51.614489],
-			zoom: 12
+			center: [longitude, latitude],
+			zoom: 16
 			});	
 		
 			map.on('load', function () {
@@ -135,37 +135,13 @@
 						'source': 'boot', // reference the data source
 						'layout': {
 							'icon-image': 'boot', // reference the image
-							'icon-size': 0.05
+							'icon-size': 0.1
 						}
 					});
 				}
 				);
 			});
 
-			window.addEventListener('load', function(){
-						
-				let succeed = function(pos){
-								
-				let marker = new mapboxgl.Marker()
-					.setLngLat([pos.coords.longitude, pos.coords.latitude])
-					.addTo(map);
-								
-				console.log(pos.coords);
-				console.log(pos.coords.longitude);
-				console.log(pos.coords.latitude);
-				}; 
-							
-				let failure = function(err){
-					console.log(err);
-				};
-							
-				let options = {
-					enableHighAccuracy: true,
-					timeout: 5000,
-					maximumAge: 0
-				};
-				navigator.geolocation.getCurrentPosition(succeed, failure, options);
-			});
 		}
 		
 		function showPoint(value) {
